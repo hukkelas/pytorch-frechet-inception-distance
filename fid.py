@@ -44,13 +44,7 @@ class PartialInceptionNetwork(nn.Module):
         """
         assert x.shape[1:] == (3, 299, 299), "Expected input shape to be: (N,3,299,299)" +\
                                              ", but got {}".format(x.shape)
-        if self.transform_input:
-            # Normalize input similar to:
-            # https://pytorch.org/docs/stable/_modules/torchvision/models/inception.html#inception_v3
-            # WARNING: done in-place.
-            x[:, 0] = x[:, 0] * (0.229 / 0.5) + (0.485 - 0.5) / 0.5
-            x[:, 1] = x[:, 1] * (0.224 / 0.5) + (0.456 - 0.5) / 0.5
-            x[:, 2] = x[:, 2] * (0.225 / 0.5) + (0.406 - 0.5) / 0.5
+        x = x * 2 -1 # Normalize to [-1, 1]
 
         # Trigger output hook
         self.inception_network(x)
@@ -266,10 +260,10 @@ if __name__ == "__main__":
                       help="Path to directory containing the real images")
     parser.add_option("--p2", "--path2", dest="path2", 
                       help="Path to directory containing the generated images")
-    parser.add_option("--no-multiprocessing", dest="use_multiprocessing",
-                      help="Toggle off use of multiprocessing for image pre-processing. Defaults to use all cores",
-                      default=True,
-                      action="store_false")
+    parser.add_option("--multiprocessing", dest="use_multiprocessing",
+                      help="Toggle use of multiprocessing for image pre-processing. Defaults to use all cores",
+                      default=False,
+                      action="store_true")
     parser.add_option("-b", "--batch-size", dest="batch_size",
                       help="Set batch size to use for InceptionV3 network",
                       type=int)
