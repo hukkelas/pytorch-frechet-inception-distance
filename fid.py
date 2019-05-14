@@ -266,8 +266,8 @@ if __name__ == "__main__":
                       help="Path to directory containing the real images")
     parser.add_option("--p2", "--path2", dest="path2", 
                       help="Path to directory containing the generated images")
-    parser.add_option("--multiprocessing", dest="use_multiprocessing",
-                      help="Toggle use of multiprocessing for image pre-processing. Defaults to use all cores",
+    parser.add_option("--no-multiprocessing", dest="use_multiprocessing",
+                      help="Toggle off use of multiprocessing for image pre-processing. Defaults to use all cores",
                       default=True,
                       action="store_false")
     parser.add_option("-b", "--batch-size", dest="batch_size",
