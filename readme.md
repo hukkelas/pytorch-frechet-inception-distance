@@ -1,3 +1,5 @@
+# As stated previously, this implementation does not generate similar scores as the original tensorflow implementation. I recommend everyone to use mseitzer's implementation: https://github.com/mseitzer/pytorch-fid
+
 # Fréchet Inception Distance (FID) for Pytorch
 
 This implementation contains an implementation of the FID score in pytorch using a pre-trained InceptionV3 network. 
