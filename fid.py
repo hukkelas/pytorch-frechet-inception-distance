@@ -241,7 +241,7 @@ def load_images(path):
         for impath in glob.glob(os.path.join(path, "*.{}".format(ext))):
             image_paths.append(impath)
     first_image = cv2.imread(image_paths[0])
-    W, H = first_image.shape[:2]
+    H, W = first_image.shape[:2]
     image_paths.sort()
     image_paths = image_paths
     final_images = np.zeros((len(image_paths), H, W, 3), dtype=first_image.dtype)
